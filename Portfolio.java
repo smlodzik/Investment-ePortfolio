@@ -416,141 +416,24 @@ public class Portfolio {
                     }
                 }
 
-
                 //SEARCH STOCK INVESTMENTS
-                System.out.println("STOCK INVESTMENTS:");
-                //iterate through each investment
+                System.out.println("\nSTOCK INVESTMENTS:");
+
+                //iterate through each investment 
                 for (int i = 0; i < iList.size(); i++) { 
-                    //symbol matches
-                    if (iList.get(i).getSymbol().contains(symbolName)) {
-                        //keywords blank
-                        if (tempInput.isEmpty()) {
-                            //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE NULL
-                            //price range blank
-                            if (priceRange.isEmpty()) {
-                                System.out.println("#" + (i+1));
-                                System.out.println(iList.get(i).toString());
-                            }
-                            //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE MATCH
-                            else {
-                                //check for the range based on the position of "-"
-                                if (r == 1) {
-                                    if (pRange <= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 2) {
-                                    if (pRange >= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 3) {
-                                    if (pRange == iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                            }
-                        }
-                        //keywords match
-                        else {
-                            int kCount2 = 0;
-                            for (int j = 0; j < kCount; j++) {
-                                if (iList.get(i).getName().contains(keywords[j])) {
-                                    kCount2 += 1;
-                                }
-                                else {
-                                    continue;
-                                }
-                            }
-                            if (kCount2 == kCount) {
-                                //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE NULL
+                    Stock tempStock = new Stock("t", "temp", 0, 0.0, 0.0);
+                    if (iList.get(i).getClass().equals(tempStock.getClass())) {
+                        //symbol matches
+                        if (iList.get(i).getSymbol().contains(symbolName)) {
+                            //keywords blank
+                            if (tempInput.isEmpty()) {
+                                //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE NULL
                                 //price range blank
                                 if (priceRange.isEmpty()) {
                                     System.out.println("#" + (i+1));
                                     System.out.println(iList.get(i).toString());
                                 }
-                                //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE MATCH
-                                else {
-                                    //check for the range based on the positio of "-"
-                                    if (r == 1) {
-                                        if (pRange <= iList.get(i).getPrice()) {
-                                            System.out.println("#" + (i+1));
-                                            System.out.println(iList.get(i).toString());
-                                        }
-                                    }
-                                    else if (r == 2) {
-                                        if (pRange >= iList.get(i).getPrice()) {
-                                            System.out.println("#" + (i+1));
-                                            System.out.println(iList.get(i).toString());
-                                        }
-                                    }
-                                    else if (r == 3) {
-                                        if (pRange == iList.get(i).getPrice()) {
-                                            System.out.println("#" + (i+1));
-                                            System.out.println(iList.get(i).toString());
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //symbol blank
-                    else if (symbolName.isEmpty()) {
-                        //keywords blank
-                        if (tempInput.isEmpty()) {
-                            //SYMBOL NULL, KEYWORD NULL, PRICE RANGE NULL
-                            //price range blank
-                            if (priceRange.isEmpty()) {
-                                for (int k = 0; k < iList.size(); k++) {
-                                    System.out.println("#" + (k+1));
-                                    System.out.println(iList.get(i).toString());
-                                }
-                            }
-                            //SYMBOL NULL, KEYWORD NULL, PRICE RANGE MATCH
-                            else {
-                                //check for the range based on the position of "-"
-                                if (r == 1) {
-                                    if (pRange <= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 2) {
-                                    if (pRange >= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 3) {
-                                    if (pRange == iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                            }
-                        }
-                        //keywords match
-                        else {
-                            int kCount2 = 0;
-                            for (int j = 0; j < kCount; j++) {
-                                if (iList.get(i).getName().contains(keywords[j])) {
-                                    kCount2 += 1;
-                                }
-                                else {
-                                    continue;
-                                }
-                            }
-                            if (kCount2 == kCount) {
-                                //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE NULL
-                                //price range blank
-                                if (priceRange.isEmpty()) {
-                                    System.out.println("#" + (i+1));
-                                    System.out.println(iList.get(i).toString());
-                                }
-                                //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE MATCH
+                                //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE MATCH
                                 else {
                                     //check for the range based on the position of "-"
                                     if (r == 1) {
@@ -569,6 +452,126 @@ public class Portfolio {
                                         if (pRange == iList.get(i).getPrice()) {
                                             System.out.println("#" + (i+1));
                                             System.out.println(iList.get(i).toString());
+                                        }
+                                    }
+                                }
+                            }
+                            //keywords match
+                            else {
+                                int kCount2 = 0;
+                                for (int j = 0; j < kCount; j++) {
+                                    if (iList.get(i).getName().contains(keywords[j])) {
+                                        kCount2 += 1;
+                                    }
+                                    else {
+                                        continue;
+                                    }
+                                }
+                                if (kCount2 == kCount) {
+                                    //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE NULL
+                                    //price range blank
+                                    if (priceRange.isEmpty()) {
+                                        System.out.println("#" + (i+1));
+                                        System.out.println(iList.get(i).toString());
+                                    }
+                                    //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE MATCH
+                                    else {
+                                        //check for the range based on the positio of "-"
+                                        if (r == 1) {
+                                            if (pRange <= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 2) {
+                                            if (pRange >= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 3) {
+                                            if (pRange == iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //symbol blank
+                        else if (symbolName.isEmpty()) {
+                            //keywords blank
+                            if (tempInput.isEmpty()) {
+                                //SYMBOL NULL, KEYWORD NULL, PRICE RANGE NULL
+                                //price range blank
+                                if (priceRange.isEmpty()) {
+                                    for (int k = 0; k < iList.size(); k++) {
+                                        System.out.println("#" + (k+1));
+                                        System.out.println(iList.get(i).toString());
+                                    }
+                                }
+                                //SYMBOL NULL, KEYWORD NULL, PRICE RANGE MATCH
+                                else {
+                                    //check for the range based on the position of "-"
+                                    if (r == 1) {
+                                        if (pRange <= iList.get(i).getPrice()) {
+                                            System.out.println("#" + (i+1));
+                                            System.out.println(iList.get(i).toString());
+                                        }
+                                    }
+                                    else if (r == 2) {
+                                        if (pRange >= iList.get(i).getPrice()) {
+                                            System.out.println("#" + (i+1));
+                                            System.out.println(iList.get(i).toString());
+                                        }
+                                    }
+                                    else if (r == 3) {
+                                        if (pRange == iList.get(i).getPrice()) {
+                                            System.out.println("#" + (i+1));
+                                            System.out.println(iList.get(i).toString());
+                                        }
+                                    }
+                                }
+                            }
+                            //keywords match
+                            else {
+                                int kCount2 = 0;
+                                for (int j = 0; j < kCount; j++) {
+                                    if (iList.get(i).getName().contains(keywords[j])) {
+                                        kCount2 += 1;
+                                    }
+                                    else {
+                                        continue;
+                                    }
+                                }
+                                if (kCount2 == kCount) {
+                                    //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE NULL
+                                    //price range blank
+                                    if (priceRange.isEmpty()) {
+                                        System.out.println("#" + (i+1));
+                                        System.out.println(iList.get(i).toString());
+                                    }
+                                    //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE MATCH
+                                    else {
+                                        //check for the range based on the position of "-"
+                                        if (r == 1) {
+                                            if (pRange <= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 2) {
+                                            if (pRange >= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 3) {
+                                            if (pRange == iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
                                         }
                                     }
                                 }
@@ -576,63 +579,25 @@ public class Portfolio {
                         }
                     }
                 }
-
+                
                 //SEARCH MUTUAL FUND INVESTMENTS
-                System.out.println("MUTUAL FUND INVESTMENTS:");
-                //iterate through each investment
+                System.out.println("\nMUTUAL FUND INVESTMENTS:");
+                
+                //iterate through each investment 
                 for (int i = 0; i < iList.size(); i++) { 
-                    //symbol matches
-                    if (iList.get(i).getSymbol().contains(symbolName)) {
-                        //keywords blank
-                        if (tempInput.isEmpty()) {
-                            //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE NULL
-                            //price range blank
-                            if (priceRange.isEmpty()) {
-                                System.out.println("#" + (i+1));
-                                System.out.println(iList.get(i).toString());
-                            }
-                            //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE MATCH
-                            else {
-                                //check for the range based on the position of "-"
-                                if (r == 1) {
-                                    if (pRange <= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 2) {
-                                    if (pRange >= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 3) {
-                                    if (pRange == iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                            }
-                        }
-                        //keywords match
-                        else {
-                            int kCount2 = 0;
-                            for (int j = 0; j < kCount; j++) {
-                                if (iList.get(i).getName().contains(keywords[j])) {
-                                    kCount2 += 1;
-                                }
-                                else {
-                                    continue;
-                                }
-                            }
-                            if (kCount2 == kCount) {
-                                //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE NULL
+                    MutualFund tempMF = new MutualFund("t", "temp", 0, 0.0, 0.0);
+                    if (iList.get(i).getClass().equals(tempMF.getClass())) {
+                        //symbol matches
+                        if (iList.get(i).getSymbol().contains(symbolName)) {
+                            //keywords blank
+                            if (tempInput.isEmpty()) {
+                                //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE NULL
                                 //price range blank
                                 if (priceRange.isEmpty()) {
                                     System.out.println("#" + (i+1));
                                     System.out.println(iList.get(i).toString());
                                 }
-                                //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE MATCH
+                                //SYMBOL MATCH, KEYWORD NULL, PRICE RANGE MATCH
                                 else {
                                     //check for the range based on the position of "-"
                                     if (r == 1) {
@@ -655,62 +620,62 @@ public class Portfolio {
                                     }
                                 }
                             }
-                        }
-                    }
-                    //symbol blank
-                    else if (symbolName.isEmpty()) {
-                        //keywords blank
-                        if (tempInput.isEmpty()) {
-                            //SYMBOL NULL, KEYWORD NULL, PRICE RANGE NULL
-                            //price range blank
-                            if (priceRange.isEmpty()) {
-                                for (int k = 0; k < iList.size(); k++) {
-                                    System.out.println("#" + (k+1));
-                                    System.out.println(iList.get(i).toString());
-                                }
-                            }
-                            //SYMBOL NULL, KEYWORD NULL, PRICE RANGE MATCH
+                            //keywords match
                             else {
-                                //check for the range based on the position of "-"
-                                if (r == 1) {
-                                    if (pRange <= iList.get(i).getPrice()) {
+                                int kCount2 = 0;
+                                for (int j = 0; j < kCount; j++) {
+                                    if (iList.get(i).getName().contains(keywords[j])) {
+                                        kCount2 += 1;
+                                    }
+                                    else {
+                                        continue;
+                                    }
+                                }
+                                if (kCount2 == kCount) {
+                                    //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE NULL
+                                    //price range blank
+                                    if (priceRange.isEmpty()) {
                                         System.out.println("#" + (i+1));
                                         System.out.println(iList.get(i).toString());
                                     }
-                                }
-                                else if (r == 2) {
-                                    if (pRange >= iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
-                                    }
-                                }
-                                else if (r == 3) {
-                                    if (pRange == iList.get(i).getPrice()) {
-                                        System.out.println("#" + (i+1));
-                                        System.out.println(iList.get(i).toString());
+                                    //SYMBOL MATCH, KEYWORD MATCH, PRICE RANGE MATCH
+                                    else {
+                                        //check for the range based on the positio of "-"
+                                        if (r == 1) {
+                                            if (pRange <= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 2) {
+                                            if (pRange >= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 3) {
+                                            if (pRange == iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
-                        //keywords match
-                        else {
-                            int kCount2 = 0;
-                            for (int j = 0; j < kCount; j++) {
-                                if (iList.get(i).getName().contains(keywords[j])) {
-                                    kCount2 += 1;
-                                }
-                                else {
-                                    continue;
-                                }
-                            }
-                            if (kCount2 == kCount) {
-                                //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE NULL
+                        //symbol blank
+                        else if (symbolName.isEmpty()) {
+                            //keywords blank
+                            if (tempInput.isEmpty()) {
+                                //SYMBOL NULL, KEYWORD NULL, PRICE RANGE NULL
                                 //price range blank
                                 if (priceRange.isEmpty()) {
-                                    System.out.println("#" + (i+1));
-                                    System.out.println(iList.get(i).toString());
+                                    for (int k = 0; k < iList.size(); k++) {
+                                        System.out.println("#" + (k+1));
+                                        System.out.println(iList.get(i).toString());
+                                    }
                                 }
-                                //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE MATCH
+                                //SYMBOL NULL, KEYWORD NULL, PRICE RANGE MATCH
                                 else {
                                     //check for the range based on the position of "-"
                                     if (r == 1) {
@@ -729,6 +694,48 @@ public class Portfolio {
                                         if (pRange == iList.get(i).getPrice()) {
                                             System.out.println("#" + (i+1));
                                             System.out.println(iList.get(i).toString());
+                                        }
+                                    }
+                                }
+                            }
+                            //keywords match
+                            else {
+                                int kCount2 = 0;
+                                for (int j = 0; j < kCount; j++) {
+                                    if (iList.get(i).getName().contains(keywords[j])) {
+                                        kCount2 += 1;
+                                    }
+                                    else {
+                                        continue;
+                                    }
+                                }
+                                if (kCount2 == kCount) {
+                                    //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE NULL
+                                    //price range blank
+                                    if (priceRange.isEmpty()) {
+                                        System.out.println("#" + (i+1));
+                                        System.out.println(iList.get(i).toString());
+                                    }
+                                    //SYMBOL NULL, KEYWORD MATCH, PRICE RANGE MATCH
+                                    else {
+                                        //check for the range based on the position of "-"
+                                        if (r == 1) {
+                                            if (pRange <= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 2) {
+                                            if (pRange >= iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
+                                        }
+                                        else if (r == 3) {
+                                            if (pRange == iList.get(i).getPrice()) {
+                                                System.out.println("#" + (i+1));
+                                                System.out.println(iList.get(i).toString());
+                                            }
                                         }
                                     }
                                 }
