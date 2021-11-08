@@ -66,3 +66,4 @@ public class Investment {
         return "Symbol: " + this.symbol + "\nName: " + this.name + "\nQuantity: " + this.quantity + "\nPrice: $" + this.price + "\nBook Value: $" + this.bookValue;
     }
 }
+ 
