@@ -143,10 +143,8 @@ Book Value: $308.76
 End of program reached.
 
 
-EXAMPLE TEST CASE 2 (testing search cases)
-
-
 **********
 5.0 Possible Improvements
 - Valid input checking has not been completed for all inputs. All major inputs are checked for validity, but the types of variable inputs are not always checked. This could lead to the program crashing upon imperfect use, so I would definitely complete all input checking if I were given additional time.
 - The code could still be more efficient. In the future I would create more sub-methods to both help with organization and efficiency. This would make the code easier to read and also help it run smoother.
+- The implementation of hashmaps was not completed. 
