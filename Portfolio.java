@@ -85,6 +85,17 @@ public class Portfolio {
         }
 
 
+        //**********ADD DATA TO HASMAP**********
+        /*HashMap<String, ArrayList<Integer>> storeKeywords = new HashMap<String, ArrayList<Integer>>();
+        for (int i = 0; i < iList.size(); i++) {
+            String[] words = iList.get(i).getName().split("[ ]");
+
+            storeKeywords.put(words[i], new ArrayList<Integer>());
+        }
+
+        System.out.println(storeKeywords.entrySet());*/
+
+
         //**********MENU LOOP**********
         while ((userInput != "quit") && (userInput != "q")) {
             //print out menu
