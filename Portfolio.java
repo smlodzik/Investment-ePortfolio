@@ -1,13 +1,15 @@
 package ePortfolio2;
 
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Portfolio {
 
     public static void main(String[] args) {
-        //Portfolio Portfolio = new Portfolio();
+        Scanner getInput = new Scanner(System.in);
 
         DecimalFormat df = new DecimalFormat("#.##");
 
@@ -28,6 +30,62 @@ public class Portfolio {
         int r = 0; 
         String[] keywords = new String[10];
 
+        //input variables
+        String fileName, fileName2;
+        String classType = "temp";
+        
+        //**********GET INPUT FROM FILE**********
+        //get file name
+        System.out.println("If there is an input file with pre-existing investment information, please enter the name:");
+        fileName = getInput.nextLine();
+
+        //try opening the file
+        try {
+            File f = new File(fileName);
+            Scanner scanFile = new Scanner(f);
+
+            String data[] = new String[6];
+
+            //continue as long as the file has a next line
+            while (scanFile.hasNextLine()) {
+                for (int q = 0; q < 6; q++) {
+                    //seperate input
+                    String tempLine = scanFile.nextLine();
+                    String seperateInput[] = tempLine.split("\"");
+                    
+                    data[q] = seperateInput[1];
+
+                }
+                
+                //assign input based on investment type
+                if (data[0].equals("stock")) {
+                    Stock tempStock = new Stock(data[1], data[2], Integer.parseInt(data[3]), 
+                    Double.parseDouble(data[4]), Double.parseDouble(data[5]));
+                    
+                    iList.add(tempStock);
+                }
+                else if (data[0].equals("mutualfund")) {
+                    MutualFund tempMF = new MutualFund(data[1], data[2], Integer.parseInt(data[3]), 
+                    Double.parseDouble(data[4]), Double.parseDouble(data[5]));
+                    
+                    iList.add(tempMF);
+                }
+
+                if (scanFile.hasNextLine()) {
+                    scanFile.nextLine();
+                }
+                
+            }
+            //close file
+            scanFile.close();            
+        }
+        //if the file is not found, print an error
+        catch (FileNotFoundException e) {
+            System.out.println("Could not open file.");
+        }
+
+
+        //**********MENU LOOP**********
         while ((userInput != "quit") && (userInput != "q")) {
             //print out menu
             System.out.println("----------");
@@ -53,9 +111,48 @@ public class Portfolio {
             }
 
 
-            //"QUIT" OPTION (check first to end program)
+            //"QUIT" OPTION (check first to end program) AND FILE OUTPUT
             if ((userInput.equals("quit")) || (userInput.equals("q"))) {
                 System.out.println("End of program reached.");
+                
+                //**********OUTPUT DATA TO TEXT FILE**********
+                //get file name
+                System.out.println("Please enter the name of the file you wish to save your investments to:");
+                fileName2 = getInput.nextLine();
+                
+                PrintWriter fileWriter = null;
+                
+                //print data to specified file
+                try {
+                    fileWriter = new PrintWriter(new FileOutputStream(fileName2));
+                    for (int i = 0; i < iList.size(); i++) {
+                        Stock tempStock = new Stock("t", "temp", 0, 0.0, 0.0);
+                        MutualFund tempMF = new MutualFund("t", "temp", 0, 0.0, 0.0);
+                        //check class type to properly set output
+                        if (iList.get(i).getClass().equals(tempStock.getClass())) {
+                            classType = "stock";
+                        }
+                        else if (iList.get(i).getClass().equals(tempMF.getClass())) {
+                            classType = "mutualfund";
+                        }
+
+                        //output data to text file in the specified format
+                        fileWriter.println("type = \"" + classType + "\"");
+                        fileWriter.println("symbol = \"" + iList.get(i).getSymbol() + "\"");
+                        fileWriter.println("name = \"" + iList.get(i).getName() + "\"");
+                        fileWriter.println("quantity = \"" + iList.get(i).getQuantity() + "\"");
+                        fileWriter.println("price = \"" + iList.get(i).getPrice() + "\"");
+                        fileWriter.println("bookvalue = \"" + iList.get(i).getBookValue() + "\"");
+                        fileWriter.println("");
+                    }
+                }
+                //print error if unsuccessful
+                catch (IOException ioe) {
+                    System.out.println("Could not open file.");
+                }
+
+                fileWriter.close();
+
                 break;
             }
 
@@ -70,12 +167,13 @@ public class Portfolio {
                 //get symbol
                 System.out.println("Enter the symbol for the investment:");
                 temp = scanInput.nextLine();
-                String symbolName = temp.toLowerCase();
+                String symbolName = temp;
+                String symbolNameCheck = temp.toLowerCase();
                 
                 //check if the list already contains that symbol
                 int check = 0;
                 for (int j = 0; j < iList.size(); j++) {
-                    if (iList.get(j).getSymbol().contains(symbolName)) {
+                    if (iList.get(j).getSymbol().contains(symbolNameCheck)) {
                         check = 1;
                     }
                 }                   
