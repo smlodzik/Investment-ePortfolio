@@ -50,8 +50,8 @@ java <packageName>.<filename>
 EXAMPLE TEST CASE 1 (testing all functions)
     Sample Input
 Expected Output
----------- = printing the menu
-----------
+- = printing the menu
+-
     buy
 Enter the kind of investment ("stock" or "mutualFund"):
     s
@@ -63,7 +63,7 @@ Enter the quantity of the stock you wish to purchase:
     10
 Enter the price of the stock:
     5.99
-----------
+-
     g
 Enter the current price for music television
     6.99
@@ -72,7 +72,7 @@ Stock Investment Gains:
 Mutual Fund Investment Gains:
 You do not currently have any mutual fund investments to check the gain of.
 Total Investment Gains: $10
-----------
+-
     buy
 Enter the kind of investment ("stock" or "mutualFund"):
     mutualfund
@@ -84,7 +84,7 @@ Enter the quantity of the mutual fund you wish to purchase:
     23
 Enter the price of the mutual fund:
     7.89
-----------
+-
     search
 Enter the symbol for the investment you wish to find:
     MTV
@@ -100,7 +100,7 @@ Quantity: 10
 Price: $5.99
 Book Value: $69.89
 MUTUAL FUND INVESTMENTS:
-----------
+-
     search
 Enter the symbol for the investment you wish to find:
 
@@ -116,13 +116,13 @@ Namecanadian broadcasting center
 Quantity: 23
 Price: $7.89
 Book Value: $181.47
-----------
+-
     update
 Enter the new price for music television
     9.99
 Enter the new price for canadian broadcasting center
     12.99
-----------
+-
     search
 Enter the symbol for the investment you wish to find:
 
@@ -138,7 +138,7 @@ Namecanadian broadcasting center
 Quantity: 23
 Price: $12.99
 Book Value: $308.76
-----------
+-
     q
 End of program reached.
 
