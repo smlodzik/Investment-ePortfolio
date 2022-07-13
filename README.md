@@ -48,11 +48,17 @@ java <packageName>.<filename>
 - Testing was done incrementally as the program was being developed.
 
 EXAMPLE TEST CASE 1 (testing all functions)
+    
     Sample Input
+    
 Expected Output
+    
 -. = printing the menu
+    
 -.
+    
     buy
+    
 Enter the kind of investment ("stock" or "mutualFund"):
     s
 Enter the symbol for the investment:
